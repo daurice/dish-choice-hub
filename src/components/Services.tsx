@@ -3,6 +3,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import corporateImage from "@/assets/corporate-catering.jpg";
 import socialImage from "@/assets/social-events.jpg";
 import staffImage from "@/assets/staff_management.jpg";
+import cafeImage from "@/assets/cafe.jpg";
+
 
 const services = [
   {
@@ -13,9 +15,9 @@ const services = [
   },
   {
     icon: Users,
-    title: "Staff Breakfast & Lunch",
-    description: "Daily meal services to keep your team energized and productive throughout the day.",
-    image: null,
+    title: "The ChoiceCafe",
+    description: "The Choice Café serves fresh, delicious meals and drinks in a cozy setting",
+    image: cafeImage,
   },
   {
     icon: PartyPopper,
