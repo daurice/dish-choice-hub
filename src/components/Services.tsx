@@ -2,7 +2,7 @@ import { Building2, Users, PartyPopper, Utensils } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import corporateImage from "@/assets/corporate-catering.jpg";
 import socialImage from "@/assets/social-events.jpg";
-import staffImage from "@/assets/staff-canteen.jpg";
+import staffImage from "@/assets/staff_management.jpg";
 
 const services = [
   {
