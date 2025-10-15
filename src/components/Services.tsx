@@ -2,6 +2,7 @@ import { Building2, Users, PartyPopper, Utensils } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import corporateImage from "@/assets/corporate-catering.jpg";
 import socialImage from "@/assets/social-events.jpg";
+import staffImage from "@/assets/staff-canteen.jpg";
 
 const services = [
   {
@@ -24,9 +25,9 @@ const services = [
   },
   {
     icon: Utensils,
-    title: "Canteen Management",
+    title: "Staff Canteen Management",
     description: "Complete canteen management services for your organization's dining facilities.",
-    image: null,
+    image: staffImage,
   },
 ];
 
