@@ -18,14 +18,13 @@ const About = () => {
 
           <div className="space-y-6">
             <p className="text-lg text-foreground/90 leading-relaxed">
-              ChefLink Caterers Limited is a team of dedicated, artistic and culturally inspired chefs who provide
-              exceptional food and beverage services. At ChefLink, we help numerous successful companies inspire
-              employees every week and grow healthy workplaces.
+              The Choice Cafe is a team of passionate, creative, and culturally inspired chefs dedicated to delivering exceptional food and beverage services. At The Choice, 
+              we collaborate with leading organizations to inspire their teams and promote healthy workplaces through quality meals. We are celebrated for our versatility ,offering daily corporate meals, 
+              managing company canteens, preparing offsite catering from our fully equipped kitchen, and transforming corporate events with our delicious, affordable, and unforgettable culinary experiences.
             </p>
             <p className="text-lg text-foreground/90 leading-relaxed">
-              We have a multifaceted reputation for providing daily meals, running company canteens, preparing offsite
-              meals from our fully equipped kitchen and transforming company events through our exceptional, delicious
-              and affordable meals.
+              We have earned a strong reputation for delivering daily meals, operating company canteens, preparing offsite dishes from our state-of-the-art kitchen, and creating remarkable dining experiences
+               for corporate events with our flavorful and affordable meals.
             </p>
             <Button variant="outline" size="lg" className="border-2 hover:bg-primary hover:text-primary-foreground">
               More About Us

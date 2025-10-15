@@ -19,7 +19,7 @@ const Hero = () => {
 
       <div className="container mx-auto px-4 relative z-10 text-center text-white">
         <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-in fade-in slide-in-from-bottom-4 duration-1000">
-          Hospitality With Elegance
+          Every bite a delight
         </h1>
         <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-200">
           Experience exceptional catering services that transform your events into unforgettable moments
