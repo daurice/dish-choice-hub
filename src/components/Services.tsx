@@ -15,8 +15,8 @@ const services = [
   },
   {
     icon: Users,
-    title: "The ChoiceCafe",
-    description: "The Choice Café serves fresh, delicious meals and drinks in a cozy setting",
+    title: "The Choice Cafe",
+    description: "The Choice Cafe serves fresh, delicious meals and drinks in a cozy setting",
     image: cafeImage,
   },
   {
