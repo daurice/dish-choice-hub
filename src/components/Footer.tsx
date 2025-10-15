@@ -8,7 +8,7 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-bold mb-4">The Choice</h3>
             <p className="text-secondary-foreground/80">
-              Hospitality with elegance. Providing exceptional catering services for all your events.
+              Every bite a delight. Providing exceptional catering services for all your events.
             </p>
           </div>
 
@@ -25,10 +25,10 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Contact</h4>
             <ul className="space-y-2 text-secondary-foreground/80">
-              <li>0797 113 113</li>
-              <li>0728 054 755</li>
-              <li>info@cheflink.co.ke</li>
-              <li>Umoja Innercore, Nairobi</li>
+              <li>+254 723 589796</li>
+              <li>+254 </li>
+              <li>vintabsolutions16@gmail.com</li>
+              <li>Along Moi Avenue road, Naivasha Kenya</li>
             </ul>
           </div>
 
@@ -52,7 +52,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-secondary-foreground/20 mt-8 pt-8 text-center text-secondary-foreground/80">
-          <p>&copy; 2024 The Choice Catering Services. All rights reserved.</p>
+          <p>&copy; 2025 The Choice Catering Services. All rights reserved. Designed by <a href="https://mugahdeeptech.net/" className="text-primary">MugahDeepTech</a></p>
         </div>
       </div>
     </footer>

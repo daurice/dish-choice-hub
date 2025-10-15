@@ -42,22 +42,22 @@ const Contact = () => {
                   <Phone className="h-5 w-5 text-primary mt-1" />
                   <div>
                     <p className="font-semibold">Phone</p>
-                    <p className="text-muted-foreground">0797 113 113 (Office)</p>
-                    <p className="text-muted-foreground">0728 054 755</p>
+                    <p className="text-muted-foreground">+254 723 589796 (Office)</p>
+                    <p className="text-muted-foreground">+254 </p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <Mail className="h-5 w-5 text-primary mt-1" />
                   <div>
                     <p className="font-semibold">Email</p>
-                    <p className="text-muted-foreground">info@cheflink.co.ke</p>
+                    <p className="text-muted-foreground">vintabsolutions16@gmail.com</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <MapPin className="h-5 w-5 text-primary mt-1" />
                   <div>
                     <p className="font-semibold">Location</p>
-                    <p className="text-muted-foreground">Umoja Innercore, Nairobi Kenya</p>
+                    <p className="text-muted-foreground">Along Moi Avenue road, Naivasha Kenya</p>
                   </div>
                 </div>
               </CardContent>
