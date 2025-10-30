@@ -17,9 +17,14 @@ const Navbar = () => {
     <nav className="bg-secondary text-secondary-foreground sticky top-0 z-50 shadow-md">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          <div className="flex items-center gap-2">
-            <h1 className="text-2xl font-bold">The Choice</h1>
-          </div>
+          <div className="flex items-center gap-3">
+        <img
+          src="src/assets/logo.png"
+          alt="The Choice Logo"
+          className="h-24 w-40 object-contain"
+        />
+        
+      </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
