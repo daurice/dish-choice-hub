@@ -5,12 +5,12 @@ import { Badge } from "@/components/ui/badge";
 
 const menuCategories = {
   breakfast: [
-    { name: "Continental Breakfast", items: ["Fresh Pastries", "Fruit Salad", "Coffee & Tea", "Orange Juice"], price: "KES 500/person" },
-    { name: "English Breakfast", items: ["Eggs (Scrambled/Fried)", "Sausages", "Bacon", "Baked Beans", "Toast"], price: "KES 650/person" },
-    { name: "Kenyan Breakfast", items: ["Mandazi", "Mahamri", "Chai", "Fruit Platter"], price: "KES 450/person" },
+    { name: "Full Breakfast", items: ["Ndazi /Toasted/Bread/Cake Slice", "Sausage/Eggs/Bacon/Beans", "Coffee /Milo/ Tea", " Juice"], price: "KES 300/person" },
+    { name: "The Choice Special Breakfast", items: ["Coffee /Milo/ Tea", "Sausages/Eggs/", "Nduma", "Fruit Slices"], price: "KES 250/person" },
+    
   ],
-  lunch: [
-    { name: "Executive Lunch", items: ["Grilled Chicken", "Rice & Potatoes", "Vegetable Medley", "Salad Bar"], price: "KES 800/person" },
+  Platters: [
+    { name: "Small Platter", items: ["Grilled Chicken", "Rice & Potatoes", "Vegetable Medley", "Salad Bar"], price: "KES 800/person" },
     { name: "Buffet Lunch", items: ["Beef Stew", "Fish Fillet", "Ugali & Rice", "Vegetables", "Salad"], price: "KES 900/person" },
     { name: "Light Lunch", items: ["Sandwiches", "Samosas", "Fruit Salad", "Juice"], price: "KES 600/person" },
   ],
