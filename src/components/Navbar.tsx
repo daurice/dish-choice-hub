@@ -47,7 +47,7 @@ const Navbar = () => {
                   key={link.path}
                   to={link.path}
                   className={cn(
-                    "hover:text-accent transition-colors font-medium text-sm xl:text-base whitespace-nowrap",
+                    "text-primary-foreground hover:text-accent transition-colors font-medium text-sm xl:text-base whitespace-nowrap",
                     isActive(link.path) && "text-accent border-b-2 border-accent pb-1"
                   )}
                 >
