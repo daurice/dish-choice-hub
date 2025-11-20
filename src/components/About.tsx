@@ -25,7 +25,7 @@ const About = () => {
             <p className="text-lg text-foreground/90 leading-relaxed">
               {settings?.about_text || "We are a professional catering company dedicated to providing exceptional food and service for all your events. From intimate gatherings to large corporate functions, we bring culinary excellence and impeccable service to every occasion."}
             </p>
-            <Button variant="outline" size="lg" className="border-2 hover:bg-primary hover:text-primary-foreground">
+            <Button variant="outline" size="lg" className="border-2 border-primary hover:bg-accent hover:text-accent-foreground hover:border-accent">
               More About Us
             </Button>
           </div>

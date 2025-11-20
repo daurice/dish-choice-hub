@@ -1,5 +1,10 @@
 import { Helmet } from "react-helmet";
 import Hero from "@/components/Hero";
+import About from "@/components/About";
+import Services from "@/components/Services";
+import Gallery from "@/components/Gallery";
+import MenuSelection from "@/components/MenuSelection";
+import Contact from "@/components/Contact";
 
 export default function Home() {
   return (
@@ -10,6 +15,11 @@ export default function Home() {
         <meta name="keywords" content="catering, event catering, corporate catering, wedding catering, food service" />
       </Helmet>
       <Hero />
+      <About />
+      <Services />
+      <MenuSelection />
+      <Gallery />
+      <Contact />
     </>
   );
 }
