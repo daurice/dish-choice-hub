@@ -30,7 +30,8 @@ const Hero = () => {
         <Button
           size="lg"
           onClick={scrollToContact}
-          className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 animate-in fade-in slide-in-from-bottom-4 delay-300"
+          variant="accent"
+          className="animate-in fade-in slide-in-from-bottom-4 delay-300 animate-pulse"
         >
           Get Your Quote <ArrowRight className="ml-2 h-5 w-5" />
         </Button>

@@ -26,7 +26,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-secondary text-secondary-foreground sticky top-0 z-50 shadow-md">
+    <nav className="bg-primary text-primary-foreground sticky top-0 z-50 shadow-md">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo - Flexible sizing */}
@@ -45,14 +45,14 @@ const Navbar = () => {
                 key={link.path}
                 to={link.path}
                 className={cn(
-                  "hover:text-primary transition-colors font-medium text-sm xl:text-base whitespace-nowrap",
-                  isActive(link.path) && "text-primary border-b-2 border-primary pb-1"
+                  "hover:text-accent transition-colors font-medium text-sm xl:text-base whitespace-nowrap",
+                  isActive(link.path) && "text-accent border-b-2 border-accent pb-1"
                 )}
               >
                 {link.label}
               </Link>
             ))}
-            <Button variant="default" size="sm" className="gap-2 flex-shrink-0" asChild>
+            <Button variant="accent" size="sm" className="gap-2 flex-shrink-0" asChild>
               <a href="tel:+254723589796">
                 <Phone className="h-4 w-4" />
                 <span className="hidden xl:inline">Call Now</span>
@@ -63,7 +63,7 @@ const Navbar = () => {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 rounded-md hover:bg-secondary-foreground/10 transition-colors flex-shrink-0"
+            className="lg:hidden p-2 rounded-md hover:bg-primary-foreground/10 transition-colors flex-shrink-0"
             aria-label="Toggle menu"
           >
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -79,8 +79,8 @@ const Navbar = () => {
                 to={link.path}
                 onClick={() => setIsOpen(false)}
                 className={cn(
-                  "block w-full text-left px-4 py-3 hover:bg-secondary-foreground/10 rounded transition-colors",
-                  isActive(link.path) && "bg-secondary-foreground/10 text-primary font-medium border-l-4 border-primary"
+                  "block w-full text-left px-4 py-3 hover:bg-primary-foreground/10 rounded transition-colors",
+                  isActive(link.path) && "bg-primary-foreground/10 text-accent font-medium border-l-4 border-accent"
                 )}
               >
                 {link.label}
@@ -88,7 +88,7 @@ const Navbar = () => {
             ))}
             <div className="px-4 pt-2">
               <Button 
-                variant="default" 
+                variant="accent" 
                 size="sm" 
                 className="w-full gap-2" 
                 asChild
