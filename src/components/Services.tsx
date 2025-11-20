@@ -1,6 +1,10 @@
 import { Building2, Users, PartyPopper, Utensils, Briefcase, Coffee, Heart, LucideIcon } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useServices } from "@/hooks/useServices";
+import corporateCateringImg from "@/assets/corporate-catering.jpg";
+import staffManagementImg from "@/assets/staff_management.jpg";
+import socialEventsImg from "@/assets/social-events.jpg";
+import cafeImg from "@/assets/cafe.jpg";
 
 const iconMap: Record<string, LucideIcon> = {
   Building2,
@@ -10,6 +14,13 @@ const iconMap: Record<string, LucideIcon> = {
   Briefcase,
   Coffee,
   Heart,
+};
+
+const imageMap: Record<string, string> = {
+  "/src/assets/corporate-catering.jpg": corporateCateringImg,
+  "/src/assets/staff_management.jpg": staffManagementImg,
+  "/src/assets/social-events.jpg": socialEventsImg,
+  "/src/assets/cafe.jpg": cafeImg,
 };
 
 const Services = () => {
@@ -41,6 +52,7 @@ const Services = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services?.map((service) => {
             const Icon = iconMap[service.icon];
+            const imageSrc = imageMap[service.image_path] || service.image_path;
             return (
               <Card
                 key={service.id}
@@ -48,7 +60,7 @@ const Services = () => {
               >
                 <div className="relative h-48 overflow-hidden rounded-t-lg">
                   <img
-                    src={service.image_path}
+                    src={imageSrc}
                     alt={service.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                   />
