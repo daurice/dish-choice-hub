@@ -12,6 +12,7 @@ import {
 import { Link, useLocation } from "react-router-dom";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useState } from "react";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 interface AdminLayoutProps {
   children: ReactNode;
@@ -57,7 +58,7 @@ export function AdminLayout({ children }: AdminLayoutProps) {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="flex h-16 items-center px-4 gap-4">
+        <div className="flex h-16 items-center px-4 gap-4 container mx-auto">
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger asChild className="lg:hidden">
               <Button variant="ghost" size="icon">
@@ -114,8 +115,13 @@ export function AdminLayout({ children }: AdminLayoutProps) {
         </aside>
 
         {/* Main Content */}
-        <main className="flex-1 p-6">
-          {children}
+        <main className="flex-1">
+          <div className="container mx-auto">
+            <Breadcrumbs />
+            <div className="p-6">
+              {children}
+            </div>
+          </div>
         </main>
       </div>
     </div>
