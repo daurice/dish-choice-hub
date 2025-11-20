@@ -5,8 +5,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { toast } from "sonner";
+import { useContactInfo } from "@/hooks/useContactInfo";
 
 const Contact = () => {
+  const { data: contactInfo, isLoading } = useContactInfo();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -38,28 +40,36 @@ const Contact = () => {
                 <CardTitle>Contact Information</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <Phone className="h-5 w-5 text-primary mt-1" />
-                  <div>
-                    <p className="font-semibold">Phone</p>
-                    <p className="text-muted-foreground">+254 723 589796 (Office)</p>
-                    <p className="text-muted-foreground">+254 </p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Mail className="h-5 w-5 text-primary mt-1" />
-                  <div>
-                    <p className="font-semibold">Email</p>
-                    <p className="text-muted-foreground">vintabsolutions16@gmail.com</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <MapPin className="h-5 w-5 text-primary mt-1" />
-                  <div>
-                    <p className="font-semibold">Location</p>
-                    <p className="text-muted-foreground">Along Moi Avenue road, Naivasha Kenya</p>
-                  </div>
-                </div>
+                {isLoading ? (
+                  <p className="text-muted-foreground">Loading contact info...</p>
+                ) : (
+                  <>
+                    <div className="flex items-start gap-3">
+                      <Phone className="h-5 w-5 text-primary mt-1" />
+                      <div>
+                        <p className="font-semibold">Phone</p>
+                        <p className="text-muted-foreground">{contactInfo?.phone_office} (Office)</p>
+                        {contactInfo?.phone_mobile && (
+                          <p className="text-muted-foreground">{contactInfo.phone_mobile}</p>
+                        )}
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <Mail className="h-5 w-5 text-primary mt-1" />
+                      <div>
+                        <p className="font-semibold">Email</p>
+                        <p className="text-muted-foreground">{contactInfo?.email}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <MapPin className="h-5 w-5 text-primary mt-1" />
+                      <div>
+                        <p className="font-semibold">Location</p>
+                        <p className="text-muted-foreground">{contactInfo?.location}</p>
+                      </div>
+                    </div>
+                  </>
+                )}
               </CardContent>
             </Card>
           </div>
