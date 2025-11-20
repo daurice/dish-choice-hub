@@ -5,8 +5,8 @@ const Footer = () => {
   return (
     <footer className="bg-secondary text-secondary-foreground py-12">
       <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-4 gap-8">
-          <div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="sm:col-span-2 lg:col-span-1">
             <h3 className="text-xl font-bold mb-4">The Choice</h3>
             <p className="text-secondary-foreground/80">
               Every bite a delight. Providing exceptional catering services for all your events.
@@ -51,13 +51,14 @@ const Footer = () => {
 
           <div>
             <h4 className="font-semibold mb-4">Contact</h4>
-            <ul className="space-y-2 text-secondary-foreground/80">
+            <ul className="space-y-2 text-secondary-foreground/80 text-sm">
               <li>
-                <a href="tel:+254723589796" className="hover:text-primary transition-colors">
+                <a href="tel:+254723589796" className="hover:text-primary transition-colors flex items-center gap-2">
+                  <Phone className="h-4 w-4" />
                   +254 723 589796
                 </a>
               </li>
-              <li>
+              <li className="break-words">
                 <a href="mailto:vintabsolutions16@gmail.com" className="hover:text-primary transition-colors">
                   vintabsolutions16@gmail.com
                 </a>
@@ -68,25 +69,50 @@ const Footer = () => {
 
           <div>
             <h4 className="font-semibold mb-4">Follow Us</h4>
-            <div className="flex gap-4">
-              <a href="#" className="p-2 bg-secondary-foreground/10 rounded-full hover:bg-primary hover:text-primary-foreground transition-colors">
+            <div className="flex gap-4 flex-wrap">
+              <a 
+                href="#" 
+                className="p-2 bg-secondary-foreground/10 rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
+                aria-label="Facebook"
+              >
                 <Facebook className="h-5 w-5" />
               </a>
-              <a href="#" className="p-2 bg-secondary-foreground/10 rounded-full hover:bg-primary hover:text-primary-foreground transition-colors">
+              <a 
+                href="#" 
+                className="p-2 bg-secondary-foreground/10 rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
+                aria-label="Twitter"
+              >
                 <Twitter className="h-5 w-5" />
               </a>
-              <a href="#" className="p-2 bg-secondary-foreground/10 rounded-full hover:bg-primary hover:text-primary-foreground transition-colors">
+              <a 
+                href="#" 
+                className="p-2 bg-secondary-foreground/10 rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
+                aria-label="Instagram"
+              >
                 <Instagram className="h-5 w-5" />
               </a>
-              <a href="tel:+254723589796" className="p-2 bg-secondary-foreground/10 rounded-full hover:bg-primary hover:text-primary-foreground transition-colors">
+              <a 
+                href="tel:+254723589796" 
+                className="p-2 bg-secondary-foreground/10 rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
+                aria-label="Call us"
+              >
                 <Phone className="h-5 w-5" />
               </a>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-secondary-foreground/20 mt-8 pt-8 text-center text-secondary-foreground/80">
-          <p>&copy; 2025 The Choice Catering Services. All rights reserved. Designed by <a href="https://mugahdeeptech.net/" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">MugahDeepTech</a></p>
+        <div className="border-t border-secondary-foreground/20 mt-8 pt-8 text-center text-secondary-foreground/80 text-sm">
+          <p>&copy; 2025 The Choice Catering Services. All rights reserved. Designed by{" "}
+            <a 
+              href="https://mugahdeeptech.net/" 
+              className="text-primary hover:underline" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              MugahDeepTech
+            </a>
+          </p>
         </div>
       </div>
     </footer>
