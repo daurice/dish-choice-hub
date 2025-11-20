@@ -6,10 +6,7 @@ export function Breadcrumbs() {
   const location = useLocation();
   const pathnames = location.pathname.split("/").filter((x) => x);
 
-  // Don't show breadcrumbs on home page
-  if (location.pathname === "/") {
-    return null;
-  }
+  // Always show breadcrumbs on mobile/tablet (they'll be hidden on desktop via CSS)
 
   // Route name mapping for better display
   const routeNames: Record<string, string> = {
@@ -32,7 +29,7 @@ export function Breadcrumbs() {
 
   return (
     <nav 
-      className="flex items-center space-x-2 text-sm py-4 px-4 bg-muted/20 border-b"
+      className="lg:hidden flex items-center space-x-2 text-sm py-4 px-4 bg-muted/20 border-b"
       aria-label="Breadcrumb"
     >
       <ol className="flex items-center space-x-2">
