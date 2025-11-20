@@ -9,10 +9,10 @@ const menuCategories = {
     { name: "The Choice Special Breakfast", items: ["Coffee /Milo/ Tea", "Sausages/Eggs/", "Nduma", "Fruit Slices"], price: "KES 250/person" },
     
   ],
-  Platters: [
-    { name: "Small Platter", items: ["Grilled Chicken", "Rice & Potatoes", "Vegetable Medley", "Salad Bar"], price: "KES 800/person" },
-    { name: "Buffet Lunch", items: ["Beef Stew", "Fish Fillet", "Ugali & Rice", "Vegetables", "Salad"], price: "KES 900/person" },
-    { name: "Light Lunch", items: ["Sandwiches", "Samosas", "Fruit Salad", "Juice"], price: "KES 600/person" },
+  platters: [
+    { name: "Small Platter", items: ["1/4 Chicken", "1/4 Choma", "Vegetable rice", "Chips","Chapati","2 Sausages","2 Free Mocktails"], price: "@ KES 750" },
+    { name: "Medium Platter", items: ["1/2 Chicken", "1/4 Mbuzi Choma", "Vege Rice", "Pilau", "Chips","Chapati","Greens","Kachumbari","2 Sausages","2 Samosas","3 free mocktails"], price: "@ KES 1500" },
+    { name: "Large Platter", items: ["1/2 Chicken", "1/2 Choma", "1/2 dry fry beef", "Ugali","Pilau","Vege rice","Chapati","Chips/Chips Masala","3 Sausages","2 Samosas","Kachumbari","4 free Mocktail"], price: "@ KES 2500" },
   ],
   dinner: [
     { name: "Gala Dinner", items: ["3-Course Meal", "Welcome Drinks", "Main Course", "Dessert"], price: "KES 1,500/person" },
@@ -42,7 +42,7 @@ const MenuSelection = () => {
         <Tabs defaultValue="breakfast" className="w-full" onValueChange={setSelectedCategory}>
           <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 mb-8 h-auto">
             <TabsTrigger value="breakfast" className="py-3">Breakfast</TabsTrigger>
-            <TabsTrigger value="lunch" className="py-3">Lunch</TabsTrigger>
+            <TabsTrigger value="platters" className="py-3">Platters</TabsTrigger>
             <TabsTrigger value="dinner" className="py-3">Dinner</TabsTrigger>
             <TabsTrigger value="cocktail" className="py-3">Cocktail</TabsTrigger>
           </TabsList>
