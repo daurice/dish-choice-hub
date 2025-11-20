@@ -1,39 +1,32 @@
-import { Building2, Users, PartyPopper, Utensils } from "lucide-react";
+import { Building2, Users, PartyPopper, Utensils, Briefcase, Coffee, Heart, LucideIcon } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import corporateImage from "@/assets/corporate-catering.jpg";
-import socialImage from "@/assets/social-events.jpg";
-import staffImage from "@/assets/staff_management.jpg";
-import cafeImage from "@/assets/cafe.jpg";
+import { useServices } from "@/hooks/useServices";
 
-
-const services = [
-  {
-    icon: Building2,
-    title: "Corporate Catering",
-    description: "Professional catering solutions for business meetings, conferences, and corporate events.",
-    image: corporateImage,
-  },
-  {
-    icon: Users,
-    title: "The Choice Cafe",
-    description: "The Choice Cafe serves fresh, delicious meals and drinks in a cozy setting",
-    image: cafeImage,
-  },
-  {
-    icon: PartyPopper,
-    title: "Social Events",
-    description: "Make your weddings, birthdays, and celebrations memorable with our exquisite catering.",
-    image: socialImage,
-  },
-  {
-    icon: Utensils,
-    title: "Staff Canteen Management",
-    description: "Complete canteen management services for your organization's dining facilities.",
-    image: staffImage,
-  },
-];
+const iconMap: Record<string, LucideIcon> = {
+  Building2,
+  Users,
+  PartyPopper,
+  Utensils,
+  Briefcase,
+  Coffee,
+  Heart,
+};
 
 const Services = () => {
+  const { data: services, isLoading } = useServices();
+
+  if (isLoading) {
+    return (
+      <section id="services" className="py-20 bg-muted">
+        <div className="container mx-auto px-4">
+          <div className="text-center">
+            <p className="text-muted-foreground">Loading services...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section id="services" className="py-20 bg-muted">
       <div className="container mx-auto px-4">
@@ -46,31 +39,34 @@ const Services = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {services.map((service, index) => (
-            <Card
-              key={index}
-              className="group hover:shadow-xl transition-all duration-300 cursor-pointer border-2 hover:border-primary"
-            >
-              {service.image && (
+          {services?.map((service) => {
+            const Icon = iconMap[service.icon];
+            return (
+              <Card
+                key={service.id}
+                className="group hover:shadow-xl transition-all duration-300 cursor-pointer border-2 hover:border-primary"
+              >
                 <div className="relative h-48 overflow-hidden rounded-t-lg">
                   <img
-                    src={service.image}
+                    src={service.image_path}
                     alt={service.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                   />
                 </div>
-              )}
-              <CardHeader>
-                <div className="mb-4 inline-block p-3 bg-primary/10 rounded-lg">
-                  <service.icon className="h-8 w-8 text-primary" />
-                </div>
-                <CardTitle className="text-xl">{service.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-base">{service.description}</CardDescription>
-              </CardContent>
-            </Card>
-          ))}
+                <CardHeader>
+                  {Icon && (
+                    <div className="mb-4 inline-block p-3 bg-primary/10 rounded-lg">
+                      <Icon className="h-8 w-8 text-primary" />
+                    </div>
+                  )}
+                  <CardTitle className="text-xl">{service.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-base">{service.description}</CardDescription>
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
       </div>
     </section>

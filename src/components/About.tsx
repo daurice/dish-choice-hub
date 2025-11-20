@@ -1,12 +1,17 @@
 import { Button } from "@/components/ui/button";
 import aboutImage from "@/assets/about-us.jpg";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 
 const About = () => {
+  const { data: settings } = useSiteSettings();
+
   return (
     <section id="about" className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-4 text-foreground">Who We Are</h2>
+          <h2 className="text-4xl font-bold mb-4 text-foreground">
+            {settings?.about_title || "Who We Are"}
+          </h2>
           <div className="w-24 h-1 bg-primary mx-auto"></div>
         </div>
 
@@ -18,13 +23,7 @@ const About = () => {
 
           <div className="space-y-6">
             <p className="text-lg text-foreground/90 leading-relaxed">
-              The Choice Cafe is a team of passionate, creative, and culturally inspired chefs dedicated to delivering exceptional food and beverage services. At The Choice, 
-              we collaborate with leading organizations to inspire their teams and promote healthy workplaces through quality meals. We are celebrated for our versatility ,offering daily corporate meals, 
-              managing company canteens, preparing offsite catering from our fully equipped kitchen, and transforming corporate events with our delicious, affordable, and unforgettable culinary experiences.
-            </p>
-            <p className="text-lg text-foreground/90 leading-relaxed">
-              We have earned a strong reputation for delivering daily meals, operating company canteens, preparing offsite dishes from our state-of-the-art kitchen, and creating remarkable dining experiences
-               for corporate events with our flavorful and affordable meals.
+              {settings?.about_text || "We are a professional catering company dedicated to providing exceptional food and service for all your events. From intimate gatherings to large corporate functions, we bring culinary excellence and impeccable service to every occasion."}
             </p>
             <Button variant="outline" size="lg" className="border-2 hover:bg-primary hover:text-primary-foreground">
               More About Us

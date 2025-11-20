@@ -5,90 +5,22 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { useGalleryImages } from "@/hooks/useGalleryImages";
 
 const Gallery = () => {
-  const images = [
-    {
-      src: "/src/assets/image 1.jpg",
-      title: "Corporate Event",
-      description: "Networking and innovation in action.",
-    },
-    {
-      src: "/src/assets/image 2.jpg",
-      title: "Delicious Dishes",
-      description: "A taste of our creative culinary art.",
-    },
-    {
-      src: "/src/assets/image 3.jpg",
-      title: "Outdoor Setup",
-      description: "Charming ambience for open-air events.",
-    },
-    {
-      src: "/src/assets/image 4.jpg",
-      title: "Cultural Evening",
-      description: "A celebration of culture and connection.",
-    },
-    {
-      src: "/src/assets/image 5.jpg",
-      title: "Chef’s Choice",
-      description: "Signature dishes crafted with passion.",
-    },
-      {
-      src: "/src/assets/image 6.jpg",
-      title: "Veggie Harmony",
-      description: "A colorful medley of fresh vegetables.",
-    },
-      {
-      src: "/src/assets/image 7.jpg",
-      title: "Golden Hour",
-      description: "Moments that shine with warmth and beauty.",
-    },
-      {
-      src: "/src/assets/image 8.jpg",
-      title: "Sausage Delight",
-      description: "Juicy, flavorful sausages grilled to perfection.",
-    },
-      {
-      src: "/src/assets/image 9.jpg",
-      title: "Spice Odyssey",
-      description: "A journey of bold and exotic flavors.",
-    },
-      {
-      src: "/src/assets/image 10.jpg",
-      title: "Sip & Savor",
-      description: "Experience drinks paired with exquisite flavors.",
-    },
-      {
-      src: "/src/assets/image 11.jpg",
-      title: "Sizzle & Serve",
-      description: "Hot, fresh, and full of excitement.",
-    },
-      {
-      src: "/src/assets/image 12.jpg",
-      title: "Elegant Table Setting",
-      description: "Details that make every meal special.",
-    },  {
-      src: "/src/assets/image 13.jpg",
-      title: "Epicurean Delight",
-      description: "A sophisticated experience for food lovers.",
-    },  {
-      src: "/src/assets/image 14.jpg",
-      title: "Culinary Canvas",
-      description: "Artful presentations that taste as good as they look.",
-    },  {
-      src: "/src/assets/image 15.jpg",
-      title: "Elegant Decor",
-      description: "Bringing sophistication to every event.",
-    },  {
-      src: "/src/assets/image 16.jpg",
-      title: "Meat Fest.",
-      description: "Savory delights, grilled to perfection.",
-    },    {
-      src: "/src/assets/image 17.jpg",
-      title: "Cocktail Hour",
-      description: "Flavors mingling in every glass.",
-    },  
-  ];
+  const { data: images, isLoading } = useGalleryImages();
+
+  if (isLoading) {
+    return (
+      <section id="gallery" className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="text-center">
+            <p className="text-muted-foreground">Loading gallery...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="gallery" className="py-20 bg-background">
@@ -117,11 +49,11 @@ const Gallery = () => {
           }}
           className="!pb-10"
         >
-          {images.map((item, index) => (
-            <SwiperSlide key={index}>
+          {images?.map((item) => (
+            <SwiperSlide key={item.id}>
               <div className="rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group">
                 <img
-                  src={item.src}
+                  src={item.image_path}
                   alt={item.title}
                   className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
                 />
