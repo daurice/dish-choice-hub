@@ -47,14 +47,15 @@ const Navbar = () => {
                   key={link.path}
                   to={link.path}
                   className={cn(
-                    "text-primary-foreground hover:text-accent transition-colors font-medium text-sm xl:text-base whitespace-nowrap",
-                    isActive(link.path) && "text-accent border-b-2 border-accent pb-1"
+                    "relative text-primary-foreground hover:text-accent transition-all duration-300 font-medium text-sm xl:text-base whitespace-nowrap hover:scale-110",
+                    "after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-accent after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left",
+                    isActive(link.path) && "text-accent scale-110 after:scale-x-100"
                   )}
                 >
                   {link.label}
                 </Link>
               ))}
-              <Button variant="accent" size="sm" className="gap-2 flex-shrink-0" asChild>
+              <Button variant="accent" size="sm" className="gap-2 flex-shrink-0 hover:scale-105 transition-transform duration-300" asChild>
                 <a href="tel:+254723589796">
                   <Phone className="h-4 w-4" />
                   <span className="hidden xl:inline">Call Now</span>
