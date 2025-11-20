@@ -6,8 +6,19 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
 import { ProtectedRoute } from "@/components/admin/ProtectedRoute";
 import { AdminLayout } from "@/components/admin/AdminLayout";
-import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
+import { MainLayout } from "@/components/layouts/MainLayout";
+import { ScrollToTop } from "@/components/ScrollToTop";
+
+// Public Pages
+import Home from "./pages/Home";
+import AboutPage from "./pages/About";
+import ServicesPage from "./pages/Services";
+import MenuPage from "./pages/Menu";
+import GalleryPage from "./pages/Gallery";
+import ContactPage from "./pages/Contact";
+import NotFoundPublic from "./pages/NotFoundPublic";
+
+// Admin Pages
 import Login from "./pages/admin/Login";
 import Setup from "./pages/admin/Setup";
 import Dashboard from "./pages/admin/Dashboard";
@@ -23,9 +34,18 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <AuthProvider>
           <Routes>
-            <Route path="/" element={<Index />} />
+            {/* Public Routes with MainLayout */}
+            <Route path="/" element={<MainLayout><Home /></MainLayout>} />
+            <Route path="/about" element={<MainLayout><AboutPage /></MainLayout>} />
+            <Route path="/services" element={<MainLayout><ServicesPage /></MainLayout>} />
+            <Route path="/menu" element={<MainLayout><MenuPage /></MainLayout>} />
+            <Route path="/gallery" element={<MainLayout><GalleryPage /></MainLayout>} />
+            <Route path="/contact" element={<MainLayout><ContactPage /></MainLayout>} />
+
+            {/* Admin Routes (no MainLayout - they have AdminLayout) */}
             <Route path="/admin/login" element={<Login />} />
             <Route path="/admin/setup" element={<Setup />} />
             <Route
@@ -68,8 +88,9 @@ const App = () => (
                 </ProtectedRoute>
               }
             />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
+            
+            {/* 404 Route - Must be last */}
+            <Route path="*" element={<MainLayout><NotFoundPublic /></MainLayout>} />
           </Routes>
         </AuthProvider>
       </BrowserRouter>
