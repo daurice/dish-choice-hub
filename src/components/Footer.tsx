@@ -1,10 +1,11 @@
-import { Facebook, Twitter, Instagram, Phone } from "lucide-react";
+import { Instagram, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
+import { SiTiktok } from "react-icons/si";
 
 const Footer = () => {
   return (
-    <footer className="bg-primary text-primary-foreground py-12">
-      <div className="container mx-auto px-4">
+    <footer className="bg-primary text-primary-foreground py-12 mt-auto">
+      <div className="container mx-auto px-4 max-w-7xl">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="sm:col-span-2 lg:col-span-1">
             <h3 className="text-xl font-bold mb-4">The Choice</h3>
@@ -71,25 +72,22 @@ const Footer = () => {
             <h4 className="font-semibold mb-4">Follow Us</h4>
             <div className="flex gap-4 flex-wrap">
               <a 
-                href="#" 
-                className="p-2 bg-primary-foreground/10 rounded-full hover:bg-accent hover:text-accent-foreground transition-colors"
-                aria-label="Facebook"
-              >
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a 
-                href="#" 
-                className="p-2 bg-primary-foreground/10 rounded-full hover:bg-accent hover:text-accent-foreground transition-colors"
-                aria-label="Twitter"
-              >
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a 
-                href="#" 
+                href="https://www.instagram.com/thechoicecafe254?igsh=MTdpeHRzeWN3Y3poZQ==" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="p-2 bg-primary-foreground/10 rounded-full hover:bg-accent hover:text-accent-foreground transition-colors"
                 aria-label="Instagram"
               >
                 <Instagram className="h-5 w-5" />
+              </a>
+              <a 
+                href="https://www.tiktok.com/@thechoicecafe254?_r=1&_t=ZM-91ZeWG20Iie" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 bg-primary-foreground/10 rounded-full hover:bg-accent hover:text-accent-foreground transition-colors"
+                aria-label="TikTok"
+              >
+                <SiTiktok className="h-5 w-5" />
               </a>
               <a 
                 href="tel:+254723589796" 
@@ -102,11 +100,11 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-secondary-foreground/20 mt-8 pt-8 text-center text-secondary-foreground/80 text-sm">
+        <div className="border-t border-primary-foreground/20 mt-8 pt-8 text-center text-primary-foreground/90 text-sm">
           <p>&copy; 2025 The Choice Catering Services. All rights reserved. Designed by{" "}
             <a 
               href="https://mugahdeeptech.net/" 
-              className="text-primary hover:underline" 
+              className="text-accent hover:underline font-medium" 
               target="_blank" 
               rel="noopener noreferrer"
             >
