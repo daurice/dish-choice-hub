@@ -79,15 +79,51 @@ const Navbar = () => {
               />
             </Link>
 
-            {/* Call Now Button */}
-            <Button variant="accent" size="sm" className="gap-2" asChild>
-              <a href="tel:+254723589796">
-                <Phone className="h-4 w-4" />
-                <span className="hidden sm:inline">Call Now</span>
-              </a>
-            </Button>
+            <div className="flex items-center gap-2">
+              {/* Call Now Button */}
+              <Button variant="accent" size="sm" className="gap-2" asChild>
+                <a href="tel:+254723589796">
+                  <Phone className="h-4 w-4" />
+                  <span className="hidden sm:inline">Call Now</span>
+                </a>
+              </Button>
+
+              {/* Hamburger Menu Button */}
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsOpen(!isOpen)}
+                className="text-primary-foreground hover:bg-primary-foreground/10"
+                aria-label="Toggle menu"
+              >
+                {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </Button>
+            </div>
           </div>
         </div>
+
+        {/* Mobile Navigation Menu */}
+        {isOpen && (
+          <div className="border-t border-primary-foreground/20 bg-primary">
+            <div className="container mx-auto px-4 py-4">
+              <div className="flex flex-col space-y-3">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    onClick={() => setIsOpen(false)}
+                    className={cn(
+                      "px-4 py-2 rounded-md text-primary-foreground hover:bg-primary-foreground/10 transition-colors font-medium",
+                      isActive(link.path) && "bg-accent text-accent-foreground"
+                    )}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
