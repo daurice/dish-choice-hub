@@ -28,6 +28,7 @@ import Settings from "./pages/admin/Settings";
 // Admin Table Pages
 import ContactInfo from "./pages/admin/tables/ContactInfo";
 import GalleryImages from "./pages/admin/tables/GalleryImages";
+import GalleryMigration from "./pages/admin/GalleryMigration";
 import MenuCategories from "./pages/admin/tables/MenuCategories";
 import MenuItems from "./pages/admin/tables/MenuItems";
 import Services from "./pages/admin/tables/Services";
@@ -106,6 +107,16 @@ const App = () => (
                 <ProtectedRoute requireAdmin>
                   <AdminLayout>
                     <GalleryImages />
+                  </AdminLayout>
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/gallery-migration"
+              element={
+                <ProtectedRoute requireAdmin>
+                  <AdminLayout>
+                    <GalleryMigration />
                   </AdminLayout>
                 </ProtectedRoute>
               }
