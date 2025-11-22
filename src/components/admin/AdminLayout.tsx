@@ -32,6 +32,7 @@ import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { cn } from "@/lib/utils";
+import logo from "@/assets/choice-cafe-logo.png";
 
 interface AdminLayoutProps {
   children: ReactNode;
@@ -194,12 +195,12 @@ export function AdminLayout({ children }: AdminLayoutProps) {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
       {/* Header */}
       <header className="sticky top-0 z-50 w-full border-b bg-card shadow-sm">
-        <div className="flex h-16 items-center px-6 gap-6">
+        <div className="flex h-16 items-center px-4 md:px-6 gap-4">
           {/* Logo & Menu Toggle */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon" className="lg:flex">
@@ -210,12 +211,10 @@ export function AdminLayout({ children }: AdminLayoutProps) {
                 <div className="flex h-full flex-col">
                   <div className="p-6 border-b">
                     <div className="flex items-center gap-3">
-                      <div className="h-10 w-10 rounded-lg bg-primary flex items-center justify-center">
-                        <LayoutDashboard className="h-6 w-6 text-primary-foreground" />
-                      </div>
+                      <img src={logo} alt="Choice Cafe" className="h-10 w-10 object-contain" />
                       <div>
-                        <h2 className="text-lg font-bold">travl</h2>
-                        <p className="text-xs text-muted-foreground">Hotel Admin Dashboard</p>
+                        <h2 className="text-lg font-bold">Choice Cafe</h2>
+                        <p className="text-xs text-muted-foreground">Admin Dashboard</p>
                       </div>
                     </div>
                   </div>
@@ -227,50 +226,48 @@ export function AdminLayout({ children }: AdminLayoutProps) {
             </Sheet>
 
             <div className="hidden lg:flex items-center gap-3">
-              <div className="h-10 w-10 rounded-lg bg-primary flex items-center justify-center">
-                <LayoutDashboard className="h-6 w-6 text-primary-foreground" />
-              </div>
+              <img src={logo} alt="Choice Cafe" className="h-10 w-10 object-contain" />
               <div>
-                <h1 className="text-xl font-bold">travl</h1>
-                <p className="text-xs text-muted-foreground">Hotel Admin Dashboard</p>
+                <h1 className="text-lg md:text-xl font-bold">Choice Cafe</h1>
+                <p className="text-xs text-muted-foreground">Admin Dashboard</p>
               </div>
             </div>
           </div>
 
           {/* Page Title */}
           <div className="flex-1 hidden md:block">
-            <h2 className="text-2xl font-bold">Dashboard</h2>
+            <h2 className="text-xl md:text-2xl font-bold">Dashboard</h2>
           </div>
 
           {/* Header Actions */}
-          <div className="flex items-center gap-2">
-            <Button variant="ghost" size="icon" className="relative">
-              <Search className="h-5 w-5" />
+          <div className="flex items-center gap-1 md:gap-2">
+            <Button variant="ghost" size="icon" className="relative h-9 w-9">
+              <Search className="h-4 w-4 md:h-5 md:w-5" />
             </Button>
-            <Button variant="ghost" size="icon" className="relative hidden sm:flex">
-              <Heart className="h-5 w-5" />
+            <Button variant="ghost" size="icon" className="relative hidden sm:flex h-9 w-9">
+              <Heart className="h-4 w-4 md:h-5 md:w-5" />
             </Button>
-            <Button variant="ghost" size="icon" className="relative hidden sm:flex">
-              <Mail className="h-5 w-5" />
-              <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 bg-primary text-[10px]">
+            <Button variant="ghost" size="icon" className="relative hidden sm:flex h-9 w-9">
+              <Mail className="h-4 w-4 md:h-5 md:w-5" />
+              <Badge className="absolute -top-1 -right-1 h-4 w-4 md:h-5 md:w-5 flex items-center justify-center p-0 bg-primary text-[9px] md:text-[10px]">
                 70
               </Badge>
             </Button>
-            <Button variant="ghost" size="icon" className="relative hidden sm:flex">
-              <Bell className="h-5 w-5" />
-              <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 bg-primary text-[10px]">
+            <Button variant="ghost" size="icon" className="relative hidden sm:flex h-9 w-9">
+              <Bell className="h-4 w-4 md:h-5 md:w-5" />
+              <Badge className="absolute -top-1 -right-1 h-4 w-4 md:h-5 md:w-5 flex items-center justify-center p-0 bg-primary text-[9px] md:text-[10px]">
                 8
               </Badge>
             </Button>
-            <Button variant="ghost" size="icon" className="relative hidden sm:flex">
-              <MessageSquare className="h-5 w-5" />
-              <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 bg-primary text-[10px]">
+            <Button variant="ghost" size="icon" className="relative hidden sm:flex h-9 w-9">
+              <MessageSquare className="h-4 w-4 md:h-5 md:w-5" />
+              <Badge className="absolute -top-1 -right-1 h-4 w-4 md:h-5 md:w-5 flex items-center justify-center p-0 bg-primary text-[9px] md:text-[10px]">
                 15
               </Badge>
             </Button>
-            <Avatar className="h-9 w-9 cursor-pointer">
+            <Avatar className="h-8 w-8 md:h-9 md:w-9 cursor-pointer">
               <AvatarImage src="" />
-              <AvatarFallback className="bg-primary text-primary-foreground">
+              <AvatarFallback className="bg-primary text-primary-foreground text-sm">
                 {user?.email?.charAt(0).toUpperCase()}
               </AvatarFallback>
             </Avatar>
@@ -278,33 +275,17 @@ export function AdminLayout({ children }: AdminLayoutProps) {
         </div>
       </header>
 
-      <div className="flex">
+      <div className="flex flex-1 overflow-hidden">
         {/* Sidebar - Desktop */}
-        <aside className="hidden lg:flex w-64 border-r bg-sidebar min-h-[calc(100vh-4rem)] sticky top-16">
-          <nav className="flex-1 p-4 overflow-y-auto">
+        <aside className="hidden lg:flex w-64 border-r bg-sidebar overflow-y-auto">
+          <nav className="flex-1 p-4">
             <NavLinks />
           </nav>
-
-          {/* Floating Action Buttons */}
-          <div className="fixed right-6 bottom-6 flex flex-col gap-3">
-            <Button size="icon" className="h-12 w-12 rounded-full shadow-lg bg-primary hover:bg-primary/90">
-              <Settings className="h-5 w-5" />
-            </Button>
-            <Button size="icon" className="h-12 w-12 rounded-full shadow-lg bg-blue-500 hover:bg-blue-600">
-              <Bell className="h-5 w-5" />
-            </Button>
-            <Button size="icon" className="h-12 w-12 rounded-full shadow-lg bg-teal-500 hover:bg-teal-600">
-              <MessageSquare className="h-5 w-5" />
-            </Button>
-            <Button size="icon" className="h-12 w-12 rounded-full shadow-lg bg-green-500 hover:bg-green-600">
-              <ShoppingCart className="h-5 w-5" />
-            </Button>
-          </div>
         </aside>
 
         {/* Main Content */}
-        <main className="flex-1">
-          <div className="container mx-auto p-6">
+        <main className="flex-1 overflow-x-hidden overflow-y-auto">
+          <div className="w-full max-w-full p-4 md:p-6">
             <Breadcrumbs />
             <div className="mt-4">
               {children}
