@@ -24,7 +24,8 @@ import {
   FileText,
   UserCircle,
   Shield,
-  Database as DatabaseIcon
+  Database as DatabaseIcon,
+  Upload
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -167,6 +168,28 @@ export function AdminLayout({ children }: AdminLayoutProps) {
                 </Link>
               );
             })}
+          </div>
+        </div>
+
+        {/* Utilities Section */}
+        <div className="pt-4">
+          <div className="px-4 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+            Utilities
+          </div>
+          <div className="space-y-1">
+            <Link
+              to="/admin/gallery-migration"
+              onClick={() => setMobileMenuOpen(false)}
+              className={cn(
+                "flex items-center gap-3 px-4 py-2 rounded-lg transition-colors text-sm",
+                location.pathname === "/admin/gallery-migration"
+                  ? "bg-primary text-primary-foreground"
+                  : "text-sidebar-foreground hover:bg-sidebar-accent"
+              )}
+            >
+              <Upload className="h-4 w-4" />
+              <span>Gallery Migration</span>
+            </Link>
           </div>
         </div>
 
