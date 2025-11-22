@@ -20,6 +20,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { toast } from "sonner";
 import { Trash2, Edit, Plus, Upload } from "lucide-react";
 
@@ -338,7 +339,7 @@ export default function GalleryImages() {
 
       {/* Create/Edit Dialog */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="sm:max-w-[600px]">
+        <DialogContent className="sm:max-w-[600px] max-h-[90vh]">
           <form onSubmit={handleSubmit}>
             <DialogHeader>
               <DialogTitle>{editMode ? "Edit" : "Add"} Gallery Image</DialogTitle>
@@ -347,82 +348,84 @@ export default function GalleryImages() {
               </DialogDescription>
             </DialogHeader>
 
-            <div className="space-y-4 py-4">
-              <div className="space-y-2">
-                <Label htmlFor="image">Image *</Label>
-                <Input
-                  id="image"
-                  type="file"
-                  accept="image/jpeg,image/jpg,image/png,image/webp"
-                  onChange={handleFileChange}
-                  required={!editMode}
-                />
-                <p className="text-xs text-muted-foreground">
-                  Accepted formats: JPG, PNG, WEBP (Max 5MB)
-                </p>
-              </div>
+            <ScrollArea className="max-h-[60vh] pr-4">
+              <div className="space-y-4 py-4">
+                <div className="space-y-2">
+                  <Label htmlFor="image">Image *</Label>
+                  <Input
+                    id="image"
+                    type="file"
+                    accept="image/jpeg,image/jpg,image/png,image/webp"
+                    onChange={handleFileChange}
+                    required={!editMode}
+                  />
+                  <p className="text-xs text-muted-foreground">
+                    Accepted formats: JPG, PNG, WEBP (Max 5MB)
+                  </p>
+                </div>
 
-              {imagePreview && (
-                <div className="mt-2">
-                  <img
-                    src={imagePreview}
-                    alt="Preview"
-                    className="w-full h-48 object-cover rounded-lg"
+                {imagePreview && (
+                  <div className="mt-2">
+                    <img
+                      src={imagePreview}
+                      alt="Preview"
+                      className="w-full h-48 object-cover rounded-lg"
+                    />
+                  </div>
+                )}
+
+                <div className="space-y-2">
+                  <Label htmlFor="title">Title *</Label>
+                  <Input
+                    id="title"
+                    value={formData.title}
+                    onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                    required
                   />
                 </div>
-              )}
 
-              <div className="space-y-2">
-                <Label htmlFor="title">Title *</Label>
-                <Input
-                  id="title"
-                  value={formData.title}
-                  onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                  required
-                />
-              </div>
-
-              <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <Label htmlFor="description">Description *</Label>
-                  {imagePreview && (
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      onClick={generateDescription}
-                      disabled={generatingDescription}
-                    >
-                      {generatingDescription ? (
-                        <>
-                          <Upload className="mr-2 h-3 w-3 animate-spin" />
-                          Generating...
-                        </>
-                      ) : (
-                        "Generate with AI"
-                      )}
-                    </Button>
-                  )}
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <Label htmlFor="description">Description *</Label>
+                    {imagePreview && (
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={generateDescription}
+                        disabled={generatingDescription}
+                      >
+                        {generatingDescription ? (
+                          <>
+                            <Upload className="mr-2 h-3 w-3 animate-spin" />
+                            Generating...
+                          </>
+                        ) : (
+                          "Generate with AI"
+                        )}
+                      </Button>
+                    )}
+                  </div>
+                  <Textarea
+                    id="description"
+                    value={formData.description}
+                    onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                    required
+                    rows={4}
+                  />
                 </div>
-                <Textarea
-                  id="description"
-                  value={formData.description}
-                  onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  required
-                  rows={4}
-                />
-              </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="order_index">Order Index</Label>
-                <Input
-                  id="order_index"
-                  type="number"
-                  value={formData.order_index}
-                  onChange={(e) => setFormData({ ...formData, order_index: parseInt(e.target.value) })}
-                />
+                <div className="space-y-2">
+                  <Label htmlFor="order_index">Order Index</Label>
+                  <Input
+                    id="order_index"
+                    type="number"
+                    value={formData.order_index}
+                    onChange={(e) => setFormData({ ...formData, order_index: parseInt(e.target.value) })}
+                  />
+                </div>
               </div>
-            </div>
+            </ScrollArea>
 
             <DialogFooter>
               <Button
