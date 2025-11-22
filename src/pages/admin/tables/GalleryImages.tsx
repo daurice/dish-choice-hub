@@ -338,8 +338,8 @@ export default function GalleryImages() {
 
       {/* Create/Edit Dialog */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="sm:max-w-[600px]">
-          <form onSubmit={handleSubmit}>
+        <DialogContent className="sm:max-w-[600px] max-h-[90vh] flex flex-col">
+          <form onSubmit={handleSubmit} className="flex flex-col h-full">
             <DialogHeader>
               <DialogTitle>{editMode ? "Edit" : "Add"} Gallery Image</DialogTitle>
               <DialogDescription>
@@ -347,7 +347,7 @@ export default function GalleryImages() {
               </DialogDescription>
             </DialogHeader>
 
-            <div className="space-y-4 py-4">
+            <div className="space-y-4 py-4 overflow-y-auto flex-1">
               <div className="space-y-2">
                 <Label htmlFor="image">Image *</Label>
                 <Input
