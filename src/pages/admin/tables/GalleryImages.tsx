@@ -40,6 +40,7 @@ export default function GalleryImages() {
   const [editMode, setEditMode] = useState(false);
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
   const [uploading, setUploading] = useState(false);
+  const [generatingDescription, setGeneratingDescription] = useState(false);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   
@@ -228,6 +229,31 @@ export default function GalleryImages() {
     setIsDeleteDialogOpen(true);
   };
 
+  const generateDescription = async () => {
+    if (!imagePreview) {
+      toast.error("Please upload an image first");
+      return;
+    }
+
+    setGeneratingDescription(true);
+    try {
+      const { data, error } = await supabase.functions.invoke('generate-image-description', {
+        body: { imageBase64: imagePreview }
+      });
+
+      if (error) throw error;
+
+      if (data?.description) {
+        setFormData({ ...formData, description: data.description });
+        toast.success("Description generated successfully!");
+      }
+    } catch (error: any) {
+      toast.error("Failed to generate description: " + error.message);
+    } finally {
+      setGeneratingDescription(false);
+    }
+  };
+
   const resetForm = () => {
     setFormData({
       title: "",
@@ -357,12 +383,33 @@ export default function GalleryImages() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="description">Description *</Label>
+                <div className="flex items-center justify-between">
+                  <Label htmlFor="description">Description *</Label>
+                  {imagePreview && (
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      onClick={generateDescription}
+                      disabled={generatingDescription}
+                    >
+                      {generatingDescription ? (
+                        <>
+                          <Upload className="mr-2 h-3 w-3 animate-spin" />
+                          Generating...
+                        </>
+                      ) : (
+                        "Generate with AI"
+                      )}
+                    </Button>
+                  )}
+                </div>
                 <Textarea
                   id="description"
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                   required
+                  rows={4}
                 />
               </div>
 
