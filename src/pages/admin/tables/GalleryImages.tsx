@@ -312,7 +312,7 @@ export default function GalleryImages() {
 
       {/* Create/Edit Dialog */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="sm:max-w-[600px] max-h-[90vh] overflow-y-auto">
+        <DialogContent className="sm:max-w-[600px]">
           <form onSubmit={handleSubmit}>
             <DialogHeader>
               <DialogTitle>{editMode ? "Edit" : "Add"} Gallery Image</DialogTitle>
