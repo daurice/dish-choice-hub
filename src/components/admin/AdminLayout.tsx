@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { 
   LayoutDashboard, 
   Users, 
-  Database, 
   Settings, 
   LogOut,
   Menu,
@@ -17,7 +16,15 @@ import {
   ChevronRight,
   BarChart3,
   Package,
-  ShoppingCart
+  ShoppingCart,
+  Info,
+  Image,
+  Utensils,
+  Briefcase,
+  FileText,
+  UserCircle,
+  Shield,
+  Database as DatabaseIcon
 } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -39,13 +46,24 @@ export function AdminLayout({ children }: AdminLayoutProps) {
   const mainNavItems = [
     { icon: LayoutDashboard, label: "Dashboard", path: "/admin", hasSubmenu: true },
     { icon: Users, label: "Users", path: "/admin/users" },
-    { icon: Database, label: "Database", path: "/admin/database" },
     { icon: Settings, label: "Settings", path: "/admin/settings" },
   ];
 
   const dashboardSubItems = [
     { label: "Dashboard Light", path: "/admin" },
     { label: "Dashboard Dark", path: "/admin/dashboard-dark" },
+  ];
+
+  const databaseTables = [
+    { icon: Info, label: "Contact Info", path: "/admin/tables/contact-info" },
+    { icon: Image, label: "Gallery Images", path: "/admin/tables/gallery-images" },
+    { icon: Utensils, label: "Menu Categories", path: "/admin/tables/menu-categories" },
+    { icon: Utensils, label: "Menu Items", path: "/admin/tables/menu-items" },
+    { icon: Briefcase, label: "Services", path: "/admin/tables/services" },
+    { icon: FileText, label: "Site Settings", path: "/admin/tables/site-settings" },
+    { icon: UserCircle, label: "Profiles", path: "/admin/tables/profiles" },
+    { icon: Shield, label: "User Roles", path: "/admin/tables/user-roles" },
+    { icon: DatabaseIcon, label: "Admin Settings", path: "/admin/tables/admin-settings" },
   ];
 
   const otherSections = [
@@ -121,6 +139,35 @@ export function AdminLayout({ children }: AdminLayoutProps) {
             </Link>
           );
         })}
+
+        {/* Database Tables Section */}
+        <div className="pt-4">
+          <div className="px-4 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+            Database Tables
+          </div>
+          <div className="space-y-1">
+            {databaseTables.map((table) => {
+              const Icon = table.icon;
+              const isActive = location.pathname === table.path;
+              return (
+                <Link
+                  key={table.path}
+                  to={table.path}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={cn(
+                    "flex items-center gap-3 px-4 py-2 rounded-lg transition-colors text-sm",
+                    isActive
+                      ? "bg-primary text-primary-foreground"
+                      : "text-sidebar-foreground hover:bg-sidebar-accent"
+                  )}
+                >
+                  <Icon className="h-4 w-4" />
+                  <span>{table.label}</span>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
 
         {/* Other sections */}
         <div className="pt-6 space-y-1">
