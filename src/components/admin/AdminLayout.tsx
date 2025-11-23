@@ -5,7 +5,6 @@ import {
   LayoutDashboard, 
   Users, 
   Settings, 
-  LogOut,
   Menu,
   Search,
   Heart,
@@ -14,9 +13,6 @@ import {
   MessageSquare,
   ChevronDown,
   ChevronRight,
-  BarChart3,
-  Package,
-  ShoppingCart,
   Info,
   Image,
   Utensils,
@@ -68,12 +64,6 @@ export function AdminLayout({ children }: AdminLayoutProps) {
     { icon: DatabaseIcon, label: "Admin Settings", path: "/admin/tables/admin-settings" },
   ];
 
-  const otherSections = [
-    { icon: Package, label: "Apps" },
-    { icon: BarChart3, label: "Charts" },
-    { icon: Settings, label: "Bootstrap" },
-    { icon: ShoppingCart, label: "Plugins" },
-  ];
 
   const NavLinks = () => {
     const isDashboardSection = location.pathname === "/admin" || location.pathname.startsWith("/admin/dashboard");
@@ -193,26 +183,6 @@ export function AdminLayout({ children }: AdminLayoutProps) {
           </div>
         </div>
 
-        {/* Other sections */}
-        <div className="pt-6 space-y-1">
-          {otherSections.map((item) => {
-            const Icon = item.icon;
-            return (
-              <div
-                key={item.label}
-                className="flex items-center justify-between px-4 py-3 rounded-lg text-sidebar-foreground hover:bg-sidebar-accent transition-colors cursor-pointer"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="h-8 w-8 rounded-lg bg-muted flex items-center justify-center">
-                    <Icon className="h-4 w-4" />
-                  </div>
-                  <span>{item.label}</span>
-                </div>
-                <ChevronRight className="h-4 w-4 text-muted-foreground" />
-              </div>
-            );
-          })}
-        </div>
       </div>
     );
   };
