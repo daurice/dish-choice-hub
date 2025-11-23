@@ -115,10 +115,18 @@ export function TableCRUD({ tableName, title, description }: TableCRUDProps) {
     setSubmitting(true);
 
     try {
+      // Filter out auto-generated fields
+      const cleanedData = Object.keys(formData).reduce((acc, key) => {
+        if (key !== 'id' && key !== 'created_at' && key !== 'updated_at') {
+          acc[key] = formData[key];
+        }
+        return acc;
+      }, {} as Record<string, any>);
+
       if (editMode && selectedRow) {
         const { error } = await supabase
           .from(tableName as any)
-          .update(formData as any)
+          .update(cleanedData as any)
           .eq('id', selectedRow.id);
 
         if (error) throw error;
@@ -126,7 +134,7 @@ export function TableCRUD({ tableName, title, description }: TableCRUDProps) {
       } else {
         const { error } = await supabase
           .from(tableName as any)
-          .insert([formData as any]);
+          .insert([cleanedData as any]);
 
         if (error) throw error;
         toast.success("Record created successfully");
