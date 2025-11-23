@@ -5,3 +5,6 @@ verify_jwt = false
 
 [functions.generate-image-description]
 verify_jwt = true
+
+[functions.generate-service-description]
+verify_jwt = true

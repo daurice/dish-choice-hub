@@ -23,6 +23,16 @@ const imageMap: Record<string, string> = {
   "/src/assets/cafe.jpg": cafeImg,
 };
 
+// Helper to get image source - handles both storage bucket URLs and local assets
+const getImageSrc = (imagePath: string): string => {
+  // If it's a full URL (from storage), use it directly
+  if (imagePath.startsWith('http')) {
+    return imagePath;
+  }
+  // Otherwise, check if it's a mapped local asset
+  return imageMap[imagePath] || imagePath;
+};
+
 const Services = () => {
   const { data: services, isLoading } = useServices();
 
@@ -52,7 +62,7 @@ const Services = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services?.map((service) => {
             const Icon = iconMap[service.icon];
-            const imageSrc = imageMap[service.image_path] || service.image_path;
+            const imageSrc = getImageSrc(service.image_path);
             return (
               <Card
                 key={service.id}
