@@ -27,8 +27,10 @@ import Settings from "./pages/admin/Settings";
 
 // Admin Table Pages
 import ContactInfo from "./pages/admin/tables/ContactInfo";
+import ContactMessages from "./pages/admin/tables/ContactMessages";
 import GalleryImages from "./pages/admin/tables/GalleryImages";
 import GalleryMigration from "./pages/admin/GalleryMigration";
+import ServicesMigration from "./pages/admin/ServicesMigration";
 import MenuCategories from "./pages/admin/tables/MenuCategories";
 import MenuItems from "./pages/admin/tables/MenuItems";
 import Services from "./pages/admin/tables/Services";
@@ -102,6 +104,16 @@ const App = () => (
               }
             />
             <Route
+              path="/admin/tables/contact-messages"
+              element={
+                <ProtectedRoute requireAdmin>
+                  <AdminLayout>
+                    <ContactMessages />
+                  </AdminLayout>
+                </ProtectedRoute>
+              }
+            />
+            <Route
               path="/admin/tables/gallery-images"
               element={
                 <ProtectedRoute requireAdmin>
@@ -117,6 +129,16 @@ const App = () => (
                 <ProtectedRoute requireAdmin>
                   <AdminLayout>
                     <GalleryMigration />
+                  </AdminLayout>
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/services-migration"
+              element={
+                <ProtectedRoute requireAdmin>
+                  <AdminLayout>
+                    <ServicesMigration />
                   </AdminLayout>
                 </ProtectedRoute>
               }

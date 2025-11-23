@@ -23,16 +23,37 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      const { error } = await supabase.functions.invoke('send-contact-email', {
+      // Save message to database
+      const { data: messageData, error: dbError } = await supabase
+        .from("contact_messages")
+        .insert([{
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone || null,
+          message: formData.message,
+          status: "unread"
+        }])
+        .select()
+        .single();
+
+      if (dbError) throw dbError;
+
+      // Send email notification
+      const { error: emailError } = await supabase.functions.invoke('send-contact-email', {
         body: formData
       });
 
-      if (error) throw error;
+      if (emailError) {
+        console.error('Email error:', emailError);
+        // Don't fail the whole operation if email fails
+        toast.success("Message saved! We'll get back to you soon.");
+      } else {
+        toast.success("Thank you! We'll get back to you soon.");
+      }
 
-      toast.success("Thank you! We'll get back to you soon.");
       setFormData({ name: "", email: "", phone: "", message: "" });
     } catch (error) {
-      console.error('Error sending message:', error);
+      console.error('Error submitting message:', error);
       toast.error("Failed to send message. Please try again.");
     } finally {
       setIsSubmitting(false);

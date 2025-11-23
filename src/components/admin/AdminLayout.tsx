@@ -54,6 +54,7 @@ export function AdminLayout({ children }: AdminLayoutProps) {
 
   const databaseTables = [
     { icon: Info, label: "Contact Info", path: "/admin/tables/contact-info" },
+    { icon: Mail, label: "Contact Messages", path: "/admin/tables/contact-messages" },
     { icon: Image, label: "Gallery Images", path: "/admin/tables/gallery-images" },
     { icon: Utensils, label: "Menu Categories", path: "/admin/tables/menu-categories" },
     { icon: Utensils, label: "Menu Items", path: "/admin/tables/menu-items" },
@@ -179,6 +180,19 @@ export function AdminLayout({ children }: AdminLayoutProps) {
             >
               <Upload className="h-4 w-4" />
               <span>Gallery Migration</span>
+            </Link>
+            <Link
+              to="/admin/services-migration"
+              onClick={() => setMobileMenuOpen(false)}
+              className={cn(
+                "flex items-center gap-3 px-4 py-2 rounded-lg transition-colors text-sm",
+                location.pathname === "/admin/services-migration"
+                  ? "bg-primary text-primary-foreground"
+                  : "text-sidebar-foreground hover:bg-sidebar-accent"
+              )}
+            >
+              <Upload className="h-4 w-4" />
+              <span>Services Migration</span>
             </Link>
           </div>
         </div>
