@@ -1,53 +1,55 @@
 import { useAuth } from "@/hooks/useAuth";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Bed, LogIn, LogOut, Calendar } from "lucide-react";
+import { Mail, Image as ImageIcon, Utensils, Users } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip } from "recharts";
+import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useDashboardStats } from "@/hooks/useDashboardStats";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function Dashboard() {
   const { user } = useAuth();
+  const { data: stats, isLoading } = useDashboardStats();
 
-  const stats = [
+  const dashboardStats = [
     {
-      title: "New Booking",
-      value: "8,461",
-      icon: Bed,
+      title: "Contact Messages",
+      value: stats?.totalMessages.toLocaleString() || "0",
+      icon: Mail,
+      bgColor: "bg-blue-50 dark:bg-blue-950",
+      iconColor: "text-blue-600 dark:text-blue-400",
+    },
+    {
+      title: "Unread Messages",
+      value: stats?.unreadMessages.toLocaleString() || "0",
+      icon: Mail,
       bgColor: "bg-accent",
       iconColor: "text-accent-foreground",
     },
     {
-      title: "New Booking",
-      value: "8,461",
-      icon: Bed,
-      bgColor: "bg-accent",
-      iconColor: "text-accent-foreground",
+      title: "Gallery Images",
+      value: stats?.totalGalleryImages.toLocaleString() || "0",
+      icon: ImageIcon,
+      bgColor: "bg-purple-50 dark:bg-purple-950",
+      iconColor: "text-purple-600 dark:text-purple-400",
     },
     {
-      title: "Check In",
-      value: "753",
-      icon: LogIn,
-      bgColor: "bg-blue-50",
-      iconColor: "text-blue-500",
-    },
-    {
-      title: "Check Out",
-      value: "516",
-      icon: LogOut,
-      bgColor: "bg-orange-50",
-      iconColor: "text-orange-500",
+      title: "Total Users",
+      value: stats?.totalUsers.toLocaleString() || "0",
+      icon: Users,
+      bgColor: "bg-orange-50 dark:bg-orange-950",
+      iconColor: "text-orange-600 dark:text-orange-400",
     },
   ];
 
-  const reservationData = [
-    { name: "Week 1", checkIn: 1100, checkOut: 650 },
-    { name: "Week 2", checkIn: 1000, checkOut: 1150 },
-    { name: "Week 3", checkIn: 1900, checkOut: 400 },
-    { name: "Week 4", checkIn: 1300, checkOut: 380 },
-    { name: "Week 5", checkIn: 450, checkOut: 1350 },
-    { name: "Week 6", checkIn: 1500, checkOut: 800 },
+  const contentData = [
+    { name: "Services", count: stats?.totalServices || 0 },
+    { name: "Menu Items", count: stats?.totalMenuItems || 0 },
+    { name: "Gallery", count: stats?.totalGalleryImages || 0 },
+    { name: "Messages", count: stats?.totalMessages || 0 },
+    { name: "Users", count: stats?.totalUsers || 0 },
   ];
 
   const calendarDays = [
@@ -80,20 +82,27 @@ export default function Dashboard() {
     <div className="space-y-6">
       {/* Stats Grid */}
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        {stats.map((stat, index) => {
+        {dashboardStats.map((stat, index) => {
           const Icon = stat.icon;
           return (
             <Card key={index} className="border-0 shadow-[var(--shadow-card)]">
               <CardContent className="p-6">
-                <div className="flex items-start justify-between">
-                  <div className="space-y-2">
-                    <p className="text-sm text-muted-foreground">{stat.title}</p>
-                    <h3 className="text-3xl font-bold tracking-tight">{stat.value}</h3>
+                {isLoading ? (
+                  <div className="space-y-3">
+                    <Skeleton className="h-4 w-24" />
+                    <Skeleton className="h-8 w-16" />
                   </div>
-                  <div className={`${stat.bgColor} p-3 rounded-lg`}>
-                    <Icon className={`h-6 w-6 ${stat.iconColor}`} />
+                ) : (
+                  <div className="flex items-start justify-between">
+                    <div className="space-y-2">
+                      <p className="text-sm text-muted-foreground">{stat.title}</p>
+                      <h3 className="text-3xl font-bold tracking-tight">{stat.value}</h3>
+                    </div>
+                    <div className={`${stat.bgColor} p-3 rounded-lg`}>
+                      <Icon className={`h-6 w-6 ${stat.iconColor}`} />
+                    </div>
                   </div>
-                </div>
+                )}
               </CardContent>
             </Card>
           );
@@ -150,83 +159,49 @@ export default function Dashboard() {
           </CardContent>
         </Card>
 
-        {/* Reservation Stats */}
+        {/* Content Overview Stats */}
         <Card className="border-0 shadow-[var(--shadow-card)]">
           <CardHeader>
-            <CardTitle>Reservation Stats</CardTitle>
+            <CardTitle>Content Overview</CardTitle>
+            <CardDescription>Overview of your website content</CardDescription>
           </CardHeader>
           <CardContent>
-            <Tabs defaultValue="monthly" className="space-y-4">
-              <TabsList className="grid w-full grid-cols-3">
-                <TabsTrigger value="daily">Daily</TabsTrigger>
-                <TabsTrigger value="weekly">Weekly</TabsTrigger>
-                <TabsTrigger value="monthly">Monthly</TabsTrigger>
-              </TabsList>
-              
-              <TabsContent value="monthly" className="space-y-4">
-                <div className="flex items-center gap-4 text-sm">
-                  <div className="flex items-center gap-2">
-                    <div className="h-3 w-3 rounded-sm bg-chart-2" />
-                    <span className="text-muted-foreground">Check In</span>
-                    <span className="font-semibold">23,451</span>
-                    <span className="text-green-600 text-xs">+0.4%</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <div className="h-3 w-3 rounded-sm bg-chart-1" />
-                    <span className="text-muted-foreground">Check Out</span>
-                    <span className="font-semibold">20,441</span>
-                  </div>
-                </div>
-
-                <ChartContainer
-                  config={{
-                    checkIn: {
-                      label: "Check In",
-                      color: "hsl(var(--chart-2))",
-                    },
-                    checkOut: {
-                      label: "Check Out",
-                      color: "hsl(var(--chart-1))",
-                    },
-                  }}
-                  className="h-[300px]"
-                >
-                  <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={reservationData}>
-                      <XAxis
-                        dataKey="name"
-                        stroke="#888888"
-                        fontSize={12}
-                        tickLine={false}
-                        axisLine={false}
-                      />
-                      <YAxis
-                        stroke="#888888"
-                        fontSize={12}
-                        tickLine={false}
-                        axisLine={false}
-                        tickFormatter={(value) => `${value}`}
-                      />
-                      <ChartTooltip content={<ChartTooltipContent />} />
-                      <Bar dataKey="checkIn" fill="hsl(var(--chart-2))" radius={[4, 4, 0, 0]} />
-                      <Bar dataKey="checkOut" fill="hsl(var(--chart-1))" radius={[4, 4, 0, 0]} />
-                    </BarChart>
-                  </ResponsiveContainer>
-                </ChartContainer>
-              </TabsContent>
-
-              <TabsContent value="weekly">
-                <div className="h-[300px] flex items-center justify-center text-muted-foreground">
-                  Weekly data will be displayed here
-                </div>
-              </TabsContent>
-
-              <TabsContent value="daily">
-                <div className="h-[300px] flex items-center justify-center text-muted-foreground">
-                  Daily data will be displayed here
-                </div>
-              </TabsContent>
-            </Tabs>
+            {isLoading ? (
+              <div className="h-[300px] flex items-center justify-center">
+                <Skeleton className="h-[250px] w-full" />
+              </div>
+            ) : (
+              <ChartContainer
+                config={{
+                  count: {
+                    label: "Count",
+                    color: "hsl(var(--chart-1))",
+                  },
+                }}
+                className="h-[300px]"
+              >
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={contentData}>
+                    <XAxis
+                      dataKey="name"
+                      stroke="hsl(var(--muted-foreground))"
+                      fontSize={12}
+                      tickLine={false}
+                      axisLine={false}
+                    />
+                    <YAxis
+                      stroke="hsl(var(--muted-foreground))"
+                      fontSize={12}
+                      tickLine={false}
+                      axisLine={false}
+                      tickFormatter={(value) => `${value}`}
+                    />
+                    <ChartTooltip content={<ChartTooltipContent />} />
+                    <Bar dataKey="count" fill="hsl(var(--chart-1))" radius={[4, 4, 0, 0]} />
+                  </BarChart>
+                </ResponsiveContainer>
+              </ChartContainer>
+            )}
           </CardContent>
         </Card>
       </div>

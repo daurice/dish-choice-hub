@@ -1,5 +1,6 @@
 import { ReactNode, useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
+import { useDashboardStats } from "@/hooks/useDashboardStats";
 import { Button } from "@/components/ui/button";
 import { 
   LayoutDashboard, 
@@ -40,6 +41,7 @@ export function AdminLayout({ children }: AdminLayoutProps) {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [dashboardExpanded, setDashboardExpanded] = useState(true);
+  const { data: stats } = useDashboardStats();
 
   const mainNavItems = [
     { icon: LayoutDashboard, label: "Dashboard", path: "/admin", hasSubmenu: true },
@@ -256,21 +258,27 @@ export function AdminLayout({ children }: AdminLayoutProps) {
             </Button>
             <Button variant="ghost" size="icon" className="relative hidden sm:flex h-9 w-9">
               <Mail className="h-4 w-4 md:h-5 md:w-5" />
-              <Badge className="absolute -top-1 -right-1 h-4 w-4 md:h-5 md:w-5 flex items-center justify-center p-0 bg-primary text-[9px] md:text-[10px]">
-                70
-              </Badge>
+              {stats && stats.unreadMessages > 0 && (
+                <Badge className="absolute -top-1 -right-1 h-4 w-4 md:h-5 md:w-5 flex items-center justify-center p-0 bg-primary text-[9px] md:text-[10px]">
+                  {stats.unreadMessages > 99 ? "99+" : stats.unreadMessages}
+                </Badge>
+              )}
             </Button>
             <Button variant="ghost" size="icon" className="relative hidden sm:flex h-9 w-9">
               <Bell className="h-4 w-4 md:h-5 md:w-5" />
-              <Badge className="absolute -top-1 -right-1 h-4 w-4 md:h-5 md:w-5 flex items-center justify-center p-0 bg-primary text-[9px] md:text-[10px]">
-                8
-              </Badge>
+              {stats && stats.totalMessages > 0 && (
+                <Badge className="absolute -top-1 -right-1 h-4 w-4 md:h-5 md:w-5 flex items-center justify-center p-0 bg-primary text-[9px] md:text-[10px]">
+                  {stats.totalMessages > 99 ? "99+" : stats.totalMessages}
+                </Badge>
+              )}
             </Button>
             <Button variant="ghost" size="icon" className="relative hidden sm:flex h-9 w-9">
               <MessageSquare className="h-4 w-4 md:h-5 md:w-5" />
-              <Badge className="absolute -top-1 -right-1 h-4 w-4 md:h-5 md:w-5 flex items-center justify-center p-0 bg-primary text-[9px] md:text-[10px]">
-                15
-              </Badge>
+              {stats && stats.totalGalleryImages > 0 && (
+                <Badge className="absolute -top-1 -right-1 h-4 w-4 md:h-5 md:w-5 flex items-center justify-center p-0 bg-primary text-[9px] md:text-[10px]">
+                  {stats.totalGalleryImages > 99 ? "99+" : stats.totalGalleryImages}
+                </Badge>
+              )}
             </Button>
             <Avatar className="h-8 w-8 md:h-9 md:w-9 cursor-pointer">
               <AvatarImage src="" />
