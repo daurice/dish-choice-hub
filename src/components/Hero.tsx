@@ -6,11 +6,8 @@ import { useSiteSettings } from "@/hooks/useSiteSettings";
 const Hero = () => {
   const { data: settings } = useSiteSettings();
 
-  const scrollToContact = () => {
-    const element = document.getElementById("contact");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+  const navigateToQuote = () => {
+    window.location.href = "/quote";
   };
 
   return (
@@ -29,7 +26,7 @@ const Hero = () => {
         </p>
         <Button
           size="lg"
-          onClick={scrollToContact}
+          onClick={navigateToQuote}
           variant="accent"
           className="animate-in fade-in slide-in-from-bottom-4 delay-300"
         >
