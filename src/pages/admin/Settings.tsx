@@ -1,7 +1,8 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
-import { Settings as SettingsIcon } from "lucide-react";
+import { Settings as SettingsIcon, FileText } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Settings() {
   const { user, userRole } = useAuth();
@@ -94,6 +95,26 @@ export default function Settings() {
               }}>
                 Open Backend Dashboard
               </a>
+            </Button>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>
+              <FileText className="h-5 w-5 inline mr-2" />
+              Quote Requests
+            </CardTitle>
+            <CardDescription>Manage customer quote requests</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-muted-foreground mb-4">
+              View, edit, and manage all quote requests from customers.
+            </p>
+            <Button variant="outline" className="w-full" asChild>
+              <Link to="/admin/tables/quotes">
+                Manage Quotes
+              </Link>
             </Button>
           </CardContent>
         </Card>

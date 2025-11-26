@@ -16,6 +16,7 @@ import ServicesPage from "./pages/Services";
 import MenuPage from "./pages/Menu";
 import GalleryPage from "./pages/Gallery";
 import ContactPage from "./pages/Contact";
+import QuotePage from "./pages/Quote";
 import NotFoundPublic from "./pages/NotFoundPublic";
 
 // Admin Pages
@@ -38,6 +39,7 @@ import SiteSettings from "./pages/admin/tables/SiteSettings";
 import Profiles from "./pages/admin/tables/Profiles";
 import UserRoles from "./pages/admin/tables/UserRoles";
 import AdminSettings from "./pages/admin/tables/AdminSettings";
+import Quotes from "./pages/admin/tables/Quotes";
 
 const queryClient = new QueryClient();
 
@@ -57,6 +59,7 @@ const App = () => (
             <Route path="/menu" element={<MainLayout><MenuPage /></MainLayout>} />
             <Route path="/gallery" element={<MainLayout><GalleryPage /></MainLayout>} />
             <Route path="/contact" element={<MainLayout><ContactPage /></MainLayout>} />
+            <Route path="/quote" element={<MainLayout><QuotePage /></MainLayout>} />
 
             {/* Admin Routes (no MainLayout - they have AdminLayout) */}
             <Route path="/admin/login" element={<Login />} />
@@ -209,6 +212,16 @@ const App = () => (
                 <ProtectedRoute requireAdmin>
                   <AdminLayout>
                     <AdminSettings />
+                  </AdminLayout>
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/tables/quotes"
+              element={
+                <ProtectedRoute requireAdmin>
+                  <AdminLayout>
+                    <Quotes />
                   </AdminLayout>
                 </ProtectedRoute>
               }
