@@ -67,7 +67,7 @@ export function QuoteForm() {
     setIsSubmitting(true);
 
     try {
-      const { error } = await supabase.from("quotes").insert([
+      const { data: quoteData, error } = await supabase.from("quotes").insert([
         {
           name: formData.name.trim(),
           email: formData.email.trim(),
@@ -76,9 +76,27 @@ export function QuoteForm() {
           message: formData.message.trim(),
           budget: formData.budget.trim() || null,
         },
-      ]);
+      ]).select().single();
 
       if (error) throw error;
+
+      // Send email notification (non-blocking)
+      try {
+        await supabase.functions.invoke("send-quote-email", {
+          body: {
+            name: formData.name.trim(),
+            email: formData.email.trim(),
+            phone: formData.phone.trim(),
+            service_type: formData.service_type,
+            message: formData.message.trim(),
+            budget: formData.budget.trim() || null,
+            created_at: quoteData.created_at,
+          },
+        });
+      } catch (emailError) {
+        // Log error but don't interrupt user flow
+        console.error("Failed to send email notification:", emailError);
+      }
 
       toast({
         title: "Quote Submitted!",
