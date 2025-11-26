@@ -27,10 +27,10 @@ const handler = async (req: Request): Promise<Response> => {
     console.log("Sending contact email notification:", { name, email, subject });
 
     const emailResponse = await resend.emails.send({
-      from: "Choice Cafe <onboarding@resend.dev>",
+      from: "The Choice Cafe <no-reply@thechoicecafe.com>",
       to: ["vintab@thechoicecafe.com"],
       replyTo: email,
-      subject: subject ? `Contact Form: ${subject}` : `New Contact Message from ${name}`,
+      subject: "New Message Submission",
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #333; border-bottom: 2px solid #4F46E5; padding-bottom: 10px;">

@@ -154,7 +154,7 @@ const Contact = () => {
                   />
                 </div>
                 <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
-                  {isSubmitting ? "Sending..." : "Get Your Quote"}
+                  {isSubmitting ? "Sending..." : "Send Message"}
                 </Button>
               </form>
             </CardContent>
