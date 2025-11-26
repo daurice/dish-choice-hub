@@ -16,6 +16,7 @@ const Navbar = () => {
     { path: "/gallery", label: "Gallery" },
     { path: "/menu", label: "Sample Menus" },
     { path: "/contact", label: "Contact" },
+    { path: "/quote", label: "Get Quote" },
   ];
 
   const isActive = (path: string) => {
