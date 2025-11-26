@@ -217,7 +217,7 @@ export function QuoteForm() {
             <Label htmlFor="budget">Budget (Optional)</Label>
             <Input
               id="budget"
-              placeholder="e.g., $5,000 - $10,000"
+              placeholder="e.g., KSh 5,000 - KSh 10,000"
               value={formData.budget}
               onChange={(e) => handleChange("budget", e.target.value)}
             />
